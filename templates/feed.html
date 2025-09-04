@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Feed</title></head>
+<body>
+  <h2>Welcome to the Feed</h2>
+  <form method="post" action="{{ url_for('create_post') }}" enctype="multipart/form-data">
+    <textarea name="content" placeholder="What's on your mind?" required></textarea><br>
+    <input type="file" name="image"><br>
+    <button type="submit">Post</button>
+  </form>
+  <hr>
+  {% for id, content, image_path, email, like_count, liked in posts %}
+    <div style="border:1px solid #ccc; margin:10px; padding:10px;">
+      <p><b>{{ email }}</b>: {{ content }}</p>
+      {% if image_path %}
+        <img src="{{ image_path }}" alt="post image" width="200"><br>
+      {% endif %}
+      <a href="{{ url_for('like', post_id=id) }}">
+        {% if liked %}❤️ Unlike{% else %}🤍 Like{% endif %}
+      </a> ({{ like_count }} likes)
+    </div>
+  {% endfor %}
+</body>
+</html>

@@ -1,0 +1,3 @@
+Flask==2.3.2
+python-dotenv==1.0.1  # optional, for loading credentials
+Pillow==10.0.0        # optional, for image processing
